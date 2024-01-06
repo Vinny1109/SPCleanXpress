@@ -5,13 +5,29 @@ if(isset($_POST['submit'])){
     $password = htmlspecialchars($_POST['password']);
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
     $address = htmlspecialchars(trim($_POST['address']));
-    extract($_POST);
-    $query="SELECT * from user_registration where  User_Name=? and Contact_No=?";
-    $stmt = $db->prepare($query);
-    $stmt->bind_param("si",$usrname,$Contact_No);
-    $stmt->execute();
-    $info = $stmt->get_result();
-    $row=$info->fetch_object();
+    $Contact_No = htmlspecialchars(trim($_POST['Contact_No']));
+
+    // Validasi Username
+    if (strlen($usrname) < 8) {
+        $valid = 'InvalidUsername';
+    }
+
+    // Validasi Password
+    elseif (!preg_match('/\d/', $password) || !preg_match('/[a-zA-Z]/', $password)) {
+        $valid = 'InvalidPassword';
+    }
+
+    // Validasi Phone Number
+    elseif (strlen($Contact_No) !== 12 || !is_numeric($Contact_No)) {
+        $valid = 'InvalidPhoneNumber';
+    }else{
+
+      $query="SELECT * from user_registration where  User_Name=? and Contact_No=?";
+      $stmt = $db->prepare($query);
+      $stmt->bind_param("si",$usrname,$Contact_No);
+      $stmt->execute();
+      $info = $stmt->get_result();
+      $row=$info->fetch_object();
           if($info->num_rows>0) 
           { 
             $valid = 'Already'; 
@@ -30,7 +46,9 @@ if(isset($_POST['submit'])){
              }else{
               $valid = 'false';
              }
-          }
+    }
+    // extract($_POST);
+  }
     
 }
 ?>
