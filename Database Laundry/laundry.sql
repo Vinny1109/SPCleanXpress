@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2019 at 08:01 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 5.6.40
+-- Generation Time: Jan 06, 2024 at 06:03 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -32,14 +31,14 @@ CREATE TABLE `admin_login` (
   `ID` int(22) NOT NULL,
   `Adm_Name` text NOT NULL,
   `Adm_Password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `admin_login`
 --
 
 INSERT INTO `admin_login` (`ID`, `Adm_Name`, `Adm_Password`) VALUES
-(1, 'admin', 'admin');
+(1, 'admin', '$2a$12$Kn1TF/zFxw2DZAitjrQ4reJOyWD.ICPGJdCrCCnKfR1eULdZ8h45W');
 
 -- --------------------------------------------------------
 
@@ -52,7 +51,7 @@ CREATE TABLE `contact_form` (
   `Name` varchar(100) NOT NULL,
   `Phone_No` varchar(15) NOT NULL,
   `Message` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -73,22 +72,22 @@ CREATE TABLE `order_detail` (
   `Address` varchar(255) NOT NULL,
   `Pick_Up_status` text NOT NULL,
   `Delivery_status` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `order_detail`
 --
 
 INSERT INTO `order_detail` (`ID`, `User_ID`, `Order_Code`, `User_Name`, `Total_Item`, `Total_Price`, `Pick_up_date`, `Delivery_date`, `Phone_No`, `Address`, `Pick_Up_status`, `Delivery_status`) VALUES
-(1, 2, 823544, 'testing', 4, 400, '2018-10-19', '2018-10-20', 089786787678, 'binus', 'No', 'Deliver'),
-(2, 2, 972038, 'testing', 10, 1500, '2018-10-26', '2018-10-05', 089786787678, 'binus', 'No', 'Deliver'),
-(3, 2, 817848, 'testing', 1, 100, '2018-10-26', '2018-10-25', 089786787678, 'binus', 'No', 'Deliver'),
-(4, 2, 853927, 'testing', 1, 100, '2018-10-11', '2018-10-10', 089786787678, 'binus', 'No', 'Deliver'),
-(5, 2, 863120, 'testing', 2, 250, '2018-11-07', '2018-11-13', 089786787678, 'binus', 'No', 'Deliver'),
-(6, 2, 91748, 'testing', 13, 1900, '2018-11-06', '2018-11-06', 089786787678, 'binus', 'No', 'Deliver'),
-(7, 2, 635845, 'testing', 13, 1900, '2018-11-06', '2018-11-06', 089786787678, 'binus', 'No', 'Deliver'),
-(8, 2, 779737, 'testing', 13, 1900, '2018-11-06', '2018-11-06', 089786787678, 'binus', 'No', 'Deliver'),
-(9, 2, 656240, 'testing', 4, 1050, '2018-11-13', '2018-11-14', 089786787678, 'binus', 'No', 'No');
+(1, 2, 823544, 'testing', 4, 400, '2018-10-19', '2018-10-20', 2147483647, 'binus', 'No', 'Deliver'),
+(2, 2, 972038, 'testing', 10, 1500, '2018-10-26', '2018-10-05', 2147483647, 'binus', 'No', 'Deliver'),
+(3, 2, 817848, 'testing', 1, 100, '2018-10-26', '2018-10-25', 2147483647, 'binus', 'No', 'Deliver'),
+(4, 2, 853927, 'testing', 1, 100, '2018-10-11', '2018-10-10', 2147483647, 'binus', 'No', 'Deliver'),
+(5, 2, 863120, 'testing', 2, 250, '2018-11-07', '2018-11-13', 2147483647, 'binus', 'No', 'Deliver'),
+(6, 2, 91748, 'testing', 13, 1900, '2018-11-06', '2018-11-06', 2147483647, 'binus', 'No', 'Deliver'),
+(7, 2, 635845, 'testing', 13, 1900, '2018-11-06', '2018-11-06', 2147483647, 'binus', 'No', 'Deliver'),
+(8, 2, 779737, 'testing', 13, 1900, '2018-11-06', '2018-11-06', 2147483647, 'binus', 'No', 'Deliver'),
+(9, 2, 656240, 'testing', 4, 1050, '2018-11-13', '2018-11-14', 2147483647, 'binus', 'No', 'No');
 
 -- --------------------------------------------------------
 
@@ -107,7 +106,7 @@ CREATE TABLE `order_temp` (
   `Pick_Delivery_Status` text NOT NULL,
   `Order_Status` text NOT NULL,
   `Order_code` varchar(22) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `order_temp`
@@ -134,7 +133,7 @@ INSERT INTO `order_temp` (`ID`, `User_ID`, `Services_Name`, `Services_Type`, `La
 CREATE TABLE `services_type` (
   `ID` int(22) NOT NULL,
   `Services_Name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `services_type`
@@ -157,7 +156,7 @@ CREATE TABLE `services_uploade` (
   `Services_Type` varchar(100) NOT NULL,
   `Dry_Price` int(120) NOT NULL,
   `Laundry_Price` int(120) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `services_uploade`
@@ -178,7 +177,7 @@ CREATE TABLE `user_login` (
   `ID` int(22) NOT NULL,
   `User_Name` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `user_login`
@@ -186,7 +185,8 @@ CREATE TABLE `user_login` (
 
 INSERT INTO `user_login` (`ID`, `User_Name`, `Password`) VALUES
 (1, 'admin', '$2y$10$mrgZwGjF/pYW/Eo1jwD/ZuzPK6tLY6uBwm8MppjSoyT9uBDH6wsaG'),
-(2, 'testing', '$2y$10$TJW0obISIDNt8TsWsEVPL.XyXUEMoCyRX3zpqEpY3fkuQLizJVgXy'); 
+(2, 'testing', '$2y$10$TJW0obISIDNt8TsWsEVPL.XyXUEMoCyRX3zpqEpY3fkuQLizJVgXy');
+
 -- --------------------------------------------------------
 
 --
@@ -199,15 +199,15 @@ CREATE TABLE `user_registration` (
   `Password` varchar(255) NOT NULL,
   `Address` varchar(255) NOT NULL,
   `Contact_No` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `user_registration`
 --
 
 INSERT INTO `user_registration` (`ID`, `User_Name`, `Password`, `Address`, `Contact_No`) VALUES
-(1, 'admin', '$2y$10$mrgZwGjF/pYW/Eo1jwD/ZuzPK6tLY6uBwm8MppjSoyT9uBDH6wsaG', 'dirumahajanih', '081231234323'),
-(2, 'testing', '$2y$10$TJW0obISIDNt8TsWsEVPL.XyXUEMoCyRX3zpqEpY3fkuQLizJVgXy', 'binus', '089786787678'); 
+(1, 'admin', '$2y$10$mrgZwGjF/pYW/Eo1jwD/ZuzPK6tLY6uBwm8MppjSoyT9uBDH6wsaG', 'dirumahajanih', 2147483647),
+(2, 'testing', '$2y$10$TJW0obISIDNt8TsWsEVPL.XyXUEMoCyRX3zpqEpY3fkuQLizJVgXy', 'binus', 2147483647);
 
 --
 -- Indexes for dumped tables
