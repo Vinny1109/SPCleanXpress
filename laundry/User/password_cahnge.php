@@ -12,7 +12,10 @@
    $Password=$_POST['Password'];
   
     $sel="UPDATE User_Login SET Password='".$Password."' where ID='".$USER_ID."'";
-     $info=$db->query($sel);
+    $stmt = $db->prepare($sel);
+    $stmt->bind_param(':password', $Password);
+    $stmt->bind_param(':user_id', $USER_ID); 
+    $info=$stmt->execute();
 
      
    if($info){
