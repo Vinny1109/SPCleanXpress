@@ -38,8 +38,20 @@ if(isset($_POST['login']))
       <div class="card-header">Admin Login</div>
       <div class="card-body">
         <form action="" method="post"  >
-          <?php if(isset($valid) && $valid == false) { ?>
-                  
+          <?php if(isset($valid) && $valid == false) { 
+            
+            $maxAttempts = 5;
+          $attempted = 0;
+
+          if(isset($valid) && $valid == false) { 
+            $attempted++;
+            if($attempted >= $maxAttempts){
+              $stmt = $db->prepare("UPDATE user_login SET status = 'blocked' WHERE User_Name = ?");
+              $stmt->bind_param("s", $username);
+              $stmt->execute();
+              echo "Too many failed login attempts";
+            }
+            ?>  
                          <div class="alert alert-warning alert-dismissible text-center">
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                             <strong>Invalid!</strong> Username or Password
