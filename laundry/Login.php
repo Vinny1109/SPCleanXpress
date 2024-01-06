@@ -62,7 +62,19 @@ if(isset($_POST['login']))
           <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <?php if(isset($valid) && $valid == false) { ?>
+          <?php 
+          $maxAttempts = 5;
+          $attempted = 0;
+
+          if(isset($valid) && $valid == false) { 
+            $attempted++;
+            if($attempted >= $maxAttempts){
+              $stmt = $db->prepare("UPDATE user_login SET status = 'blocked' WHERE User_Name = ?");
+              $stmt->bind_param("s", $username);
+              $stmt->execute();
+              echo "Too many failed login attempts";
+            }
+            ?>
         <div class="alert alert-danger">
           Invalid Username or Password
                 </div>
